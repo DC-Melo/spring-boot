@@ -6,11 +6,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 /**
  * HelloControllerTest2
  */
-@SpringBootTest
-public class HelloControllerTest2 {
+// @SpringBootTest(classes = MainApplication.class, webEnvironment =
+// SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// @SpringBootTest
+public class HelloControllerTests2 {
 
   @Autowired
   private TestRestTemplate template;
@@ -20,7 +25,7 @@ public class HelloControllerTest2 {
 
     ResponseEntity<String> response = template.getForEntity("/", String.class);
 
-    assertThat(response.getBody().isEqualTo("Hello World, Spring Boot!"));
+    assertThat(response.getBody()).isEqualTo("Hello World, Spring Boot!");
   }
 
 }
